@@ -1,9 +1,5 @@
 package com.renegens.mvpexample.login;
 
-/**
- * Created by renegens on 26/07/16.
- */
-
 public class LoginModel implements LoginActivityMVP.Model {
 
 
