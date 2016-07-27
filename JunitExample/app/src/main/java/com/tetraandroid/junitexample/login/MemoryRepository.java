@@ -10,7 +10,8 @@ public class MemoryRepository implements LoginRepository {
         if (user == null) {
             User user = new User("Fox", "Mulder");
             user.setId(0);
-            return user;
+            this.user = user;
+            return this.user;
         } else {
             return user;
         }
@@ -20,11 +21,9 @@ public class MemoryRepository implements LoginRepository {
     @Override
     public void saveUser(User user) {
 
-        if (user == null) {
-            user = getUser();
-        }
+        this.user.setFirstName(user.getFirstName());
+        this.user.setLastName(user.getLastName());
 
-        this.user = user;
 
     }
 }
