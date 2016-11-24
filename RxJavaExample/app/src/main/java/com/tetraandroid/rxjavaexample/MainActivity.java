@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         ((App)getApplication()).getComponent().inject(this);
 
-        Call<Twitch> call = twitchAPI.getTopGames();
+        Call<Twitch> call = twitchAPI.getTopGames("replace_here_the_client_id_generated_by_the_twitch_api");
 
         call.enqueue(new Callback<Twitch>() {
             @Override
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        twitchAPI.getTopGamesObservable().flatMap(new Func1<Twitch, Observable<Top>>() {
+        twitchAPI.getTopGamesObservable("replace_here_the_client_id_generated_by_the_twitch_api").flatMap(new Func1<Twitch, Observable<Top>>() {
             @Override
             public Observable<Top> call(Twitch twitch) {
 
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-       twitchAPI.getTopGamesObservable().flatMap(new Func1<Twitch, Observable<Top>>() {
+       twitchAPI.getTopGamesObservable("replace_here_the_client_id_generated_by_the_twitch_api").flatMap(new Func1<Twitch, Observable<Top>>() {
             @Override
             public Observable<Top> call(Twitch twitch) {
 
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
            }
        });
 
-        twitchAPI.getTopGamesObservable().flatMap(new Func1<Twitch, Observable<Top>>() {
+        twitchAPI.getTopGamesObservable("replace_here_the_client_id_generated_by_the_twitch_api").flatMap(new Func1<Twitch, Observable<Top>>() {
             @Override
             public Observable<Top> call(Twitch twitch) {
 
