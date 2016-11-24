@@ -9,10 +9,10 @@ import rx.Observable;
 public interface TwitchAPI {
 
     @GET("games/top")
-    Call <Twitch> getTopGames();
+    Call<Twitch> getTopGames(@Header("Client-Id") String clientId);
 
     @GET("games/top")
-    Observable <Twitch> getTopGamesObservable();
+    Observable <Twitch> getTopGamesObservable(@Header("Client-Id") String clientId);
 
 
 
