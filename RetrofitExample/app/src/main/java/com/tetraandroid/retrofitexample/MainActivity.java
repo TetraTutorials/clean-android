@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         ((App)getApplication()).getComponent().inject(this);
 
-        Call<Twitch> call = twitchAPI.getTopGames();
+        Call<Twitch> call = twitchAPI.getTopGames("replace_here_the_client_id_generated_by_the_twitch_api");
 
         call.enqueue(new Callback<Twitch>() {
             @Override
