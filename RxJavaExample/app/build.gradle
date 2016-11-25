@@ -7,7 +7,7 @@ android {
     buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "com.tetraandroid.retrofitexample"
-        inSdkVersion 16
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
