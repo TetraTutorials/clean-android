@@ -12,9 +12,10 @@ import android.view.ViewGroup;
 import com.tetraandroid.finalappexample.root.App;
 import com.tetraandroid.retrofitexample.R;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,11 +53,6 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesAct
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         presenter.setView(this);
         presenter.loadData();
 
