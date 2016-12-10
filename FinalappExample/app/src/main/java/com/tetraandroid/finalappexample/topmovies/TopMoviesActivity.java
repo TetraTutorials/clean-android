@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ViewGroup;
 
 import com.tetraandroid.finalappexample.root.App;
@@ -55,29 +54,27 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesAct
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         presenter.setView(this);
         presenter.loadData();
-
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         presenter.rxUnsubscribe();
+        resultList.clear();
+        listAdapter.notifyDataSetChanged();
+
+
     }
+
 
     @Override
     public void updateData(ViewModel viewModel) {
         resultList.add(viewModel);
-        if (resultList.isEmpty()){
-            listAdapter.notifyItemInserted(0);
-        }else {
-            listAdapter.notifyItemInserted(resultList.size() - 1);
-        }
-        Log.d(TAG, "updateData: " + resultList.size());
-
+        listAdapter.notifyItemInserted(resultList.size() - 1);
     }
 
     @Override
