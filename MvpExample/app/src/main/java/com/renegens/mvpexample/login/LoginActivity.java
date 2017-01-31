@@ -63,17 +63,6 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     }
 
     @Override
-    public void showUserNotAvailable() {
-        Toast.makeText(this, "Error the user is not available", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showUserAvailable() {
-        Toast.makeText(this, "User is available", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
     public void showInputError() {
         Toast.makeText(this, "First Name or last name cannot be empty", Toast.LENGTH_SHORT).show();
 
