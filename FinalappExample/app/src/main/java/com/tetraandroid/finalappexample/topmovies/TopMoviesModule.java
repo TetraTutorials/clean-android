@@ -1,6 +1,5 @@
 package com.tetraandroid.finalappexample.topmovies;
 
-import com.tetraandroid.finalappexample.http.ApiModuleForName;
 import com.tetraandroid.finalappexample.http.MoreInfoApiService;
 import com.tetraandroid.finalappexample.http.MovieApiService;
 
@@ -9,8 +8,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes = {ApiModuleForName.class})
-
+@Module
 public class TopMoviesModule {
 
     @Provides

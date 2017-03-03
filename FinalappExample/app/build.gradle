@@ -21,8 +21,8 @@ android {
 }
 
 ext {
-    supportLibraryVersion = '25.1.1'
-    retrofitVersion = '2.1.0'
+    supportLibraryVersion = '25.2.0'
+    retrofitVersion = '2.2.0'
 }
 
 dependencies {
@@ -43,7 +43,7 @@ dependencies {
 
     //JSON Parsing
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.google.code.gson:gson:2.7'
 
     //http logging
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.2'
@@ -57,7 +57,7 @@ dependencies {
 
     //RxJava
     compile 'io.reactivex:rxandroid:1.2.0'
-    compile 'io.reactivex:rxjava:1.1.5'
+    compile 'io.reactivex:rxjava:1.2.7'
     compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
 
 
