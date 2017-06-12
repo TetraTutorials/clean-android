@@ -8,8 +8,9 @@ import com.tetraandroid.retrofitexample.http.apimodel.Top;
 import com.tetraandroid.retrofitexample.http.apimodel.Twitch;
 import com.tetraandroid.retrofitexample.root.App;
 
-import javax.inject.Inject;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
