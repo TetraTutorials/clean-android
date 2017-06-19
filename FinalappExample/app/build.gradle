@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.tetraandroid.finalappexample"
         minSdkVersion 16
@@ -21,8 +21,8 @@ android {
 }
 
 ext {
-    supportLibraryVersion = '25.2.0'
-    retrofitVersion = '2.2.0'
+    supportLibraryVersion = '25.3.1'
+    retrofitVersion = '2.3.0'
 }
 
 dependencies {
@@ -43,7 +43,7 @@ dependencies {
 
     //JSON Parsing
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.google.code.gson:gson:2.8.1'
 
     //http logging
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.2'
@@ -57,7 +57,7 @@ dependencies {
 
     //RxJava
     compile 'io.reactivex:rxandroid:1.2.0'
-    compile 'io.reactivex:rxjava:1.2.7'
+    compile 'io.reactivex:rxjava:1.3.0'
     compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
 
 
