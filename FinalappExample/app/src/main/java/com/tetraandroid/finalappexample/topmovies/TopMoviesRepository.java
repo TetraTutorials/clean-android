@@ -80,7 +80,6 @@ public class TopMoviesRepository implements Repository {
 
     @Override
     public Observable<String> getCountriesFromNetwork() {
-
         return getResultsFromNetwork().concatMap(new Func1<Result, Observable<OmdbApi>>() {
             @Override
             public Observable<OmdbApi> call(Result result) {
@@ -97,14 +96,11 @@ public class TopMoviesRepository implements Repository {
                 countries.add(s);
             }
         });
-
     }
 
     @Override
     public Observable<String> getCountryData() {
-
        return getCountriesFromMemory().switchIfEmpty(getCountriesFromNetwork());
-
     }
 
     @Override
