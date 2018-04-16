@@ -1,6 +1,7 @@
 package com.tetraandroid.finalappexample.topmovies;
 
-import rx.Observable;
+
+import io.reactivex.Observable;
 
 public interface TopMoviesActivityMVP {
 

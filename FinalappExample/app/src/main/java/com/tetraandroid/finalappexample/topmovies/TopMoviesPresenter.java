@@ -1,14 +1,15 @@
 package com.tetraandroid.finalappexample.topmovies;
 
-import rx.Observer;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+
 
 public class TopMoviesPresenter implements TopMoviesActivityMVP.Presenter {
 
     private TopMoviesActivityMVP.View view;
-    private Subscription subscription = null;
+    private Disposable subscription = null;
     private TopMoviesActivityMVP.Model model;
 
     public TopMoviesPresenter(TopMoviesActivityMVP.Model model) {
@@ -22,9 +23,11 @@ public class TopMoviesPresenter implements TopMoviesActivityMVP.Presenter {
                 .result()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ViewModel>() {
+                .subscribeWith(new DisposableObserver<ViewModel>() {
                     @Override
-                    public void onCompleted() {}
+                    public void onComplete() {
+                    }
+
 
                     @Override
                     public void onError(Throwable e) {
@@ -46,8 +49,8 @@ public class TopMoviesPresenter implements TopMoviesActivityMVP.Presenter {
     @Override
     public void rxUnsubscribe() {
         if (subscription != null) {
-            if (!subscription.isUnsubscribed()) {
-                subscription.unsubscribe();
+            if (!subscription.isDisposed()) {
+                subscription.dispose();
             }
         }
     }
@@ -56,4 +59,5 @@ public class TopMoviesPresenter implements TopMoviesActivityMVP.Presenter {
     public void setView(TopMoviesActivityMVP.View view) {
         this.view = view;
     }
+
 }

@@ -2,7 +2,7 @@ package com.tetraandroid.finalappexample.topmovies;
 
 import com.tetraandroid.finalappexample.http.apimodel.Result;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 
 public interface Repository {
