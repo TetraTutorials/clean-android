@@ -47,11 +47,9 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesAct
         listAdapter = new ListAdapter(resultList);
         recyclerView.setAdapter(listAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this));
-
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
     }
 
     @Override
@@ -67,10 +65,7 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesAct
         presenter.rxUnsubscribe();
         resultList.clear();
         listAdapter.notifyDataSetChanged();
-
-
     }
-
 
     @Override
     public void updateData(ViewModel viewModel) {

@@ -27,15 +27,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListItemViewHo
 
     @Override
     public void onBindViewHolder(ListItemViewHolder holder, int position) {
-
         holder.itemName.setText(list.get(position).getName());
         holder.countryName.setText(list.get(position).getCountry());
-
     }
 
     @Override
     public int getItemCount() {
-
         return list.size();
     }
 

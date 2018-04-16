@@ -2,7 +2,6 @@ package com.tetraandroid.diffutilexample.topmovies;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -18,8 +17,21 @@ public class TopMoviesPresenter implements TopMoviesActivityMVP.Presenter {
 
     @Override
     public void loadData() {
+        subscription = model.result()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(viewModel -> {
+                    if (view != null) {
+                        view.updateData(viewModel);
+                    }
+                }, error -> {
+                    error.printStackTrace();
+                    if (view != null) {
+                        view.showSnackbar("Error getting movies");
+                    }
+                });
 
-        subscription = model
+        /*subscription = model
                 .result()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -43,7 +55,7 @@ public class TopMoviesPresenter implements TopMoviesActivityMVP.Presenter {
                             view.updateData(viewModel);
                         }
                     }
-                });
+                });*/
     }
 
     @Override
