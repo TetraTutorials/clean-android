@@ -1,75 +1,58 @@
 package com.tetraandroid.diffutilexample.topmovies;
 
+import com.tetraandroid.diffutilexample.http.MovieApiService;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 
 public class TopMoviesPresenter implements TopMoviesActivityMVP.Presenter {
 
     private TopMoviesActivityMVP.View view;
-    private Disposable subscription = null;
-    private TopMoviesActivityMVP.Model model;
+    private CompositeDisposable subscription;
+    private MovieApiService service;
 
-    public TopMoviesPresenter(TopMoviesActivityMVP.Model model) {
-        this.model = model;
+    public TopMoviesPresenter(MovieApiService service) {
+        this.service = service;
+        subscription = new CompositeDisposable();
+    }
+
+    @Override
+    public void attachView(TopMoviesActivityMVP.View view) {
+        this.view = view;
+    }
+
+    @Override
+    public void detachView() {
+        subscription.clear();
     }
 
     @Override
     public void loadData() {
-        subscription = model.result()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(viewModel -> {
-                    if (view != null) {
-                        view.updateData(viewModel);
-                    }
-                }, error -> {
-                    error.printStackTrace();
-                    if (view != null) {
-                        view.showSnackbar("Error getting movies");
-                    }
-                });
-
-        /*subscription = model
-                .result()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<ViewModel>() {
-                    @Override
-                    public void onComplete() {
-                    }
-
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                        if (view != null) {
-                            view.showSnackbar("Error getting movies");
-                        }
-                    }
-
-                    @Override
-                    public void onNext(ViewModel viewModel) {
-                        if (view != null) {
-                            view.updateData(viewModel);
-                        }
-                    }
-                });*/
-    }
-
-    @Override
-    public void rxUnsubscribe() {
-        if (subscription != null) {
-            if (!subscription.isDisposed()) {
-                subscription.dispose();
-            }
+        if (view != null) {
+            view.setLoading(true);
         }
-    }
 
-    @Override
-    public void setView(TopMoviesActivityMVP.View view) {
-        this.view = view;
+        subscription.add(
+                service.getTopRatedMovies(1)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnTerminate(() -> {
+                            if (view != null) {
+                                view.setLoading(false);
+                            }
+                        })
+                        .subscribe(topRated -> {
+                            if (view != null) {
+                                view.updateData(topRated.results);
+                            }
+                        }, error -> {
+                            if (view != null) {
+                                view.showSnackbar(error.getLocalizedMessage());
+                            }
+                        })
+        );
     }
 
 }

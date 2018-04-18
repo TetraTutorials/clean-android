@@ -1,4 +1,4 @@
-package com.tetraandroid.diffutilexample.topmovies;
+package com.tetraandroid.diffutilexample.helper;
 
 import android.content.Context;
 import android.graphics.Canvas;

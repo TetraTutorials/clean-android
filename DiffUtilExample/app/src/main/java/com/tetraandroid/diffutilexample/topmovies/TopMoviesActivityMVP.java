@@ -1,15 +1,20 @@
 package com.tetraandroid.diffutilexample.topmovies;
 
 
-import io.reactivex.Observable;
+import com.tetraandroid.diffutilexample.http.apimodel.Result;
+
+import java.util.List;
+
 
 public interface TopMoviesActivityMVP {
 
     interface View {
 
-        void updateData(ViewModel viewModel);
+        void updateData(List<Result> results);
 
         void showSnackbar(String s);
+
+        void setLoading(boolean isLoading);
 
     }
 
@@ -17,15 +22,10 @@ public interface TopMoviesActivityMVP {
 
         void loadData();
 
-        void rxUnsubscribe();
+        void detachView();
 
-        void setView(TopMoviesActivityMVP.View view);
-
-    }
-
-    interface Model {
-
-        Observable<ViewModel> result();
+        void attachView(TopMoviesActivityMVP.View view);
 
     }
+
 }
